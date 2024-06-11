@@ -7,6 +7,7 @@
 @section('contents')
   <div class="login-wrapper">
     <h1>ログイン</h1>
+
     @if ($errors->any())
       <div>
       @foreach ($errors->all() as $error)
@@ -18,11 +19,17 @@
       @endforeach
       </div>
     @endif
+
     @if($errors->has('auth'))
       <div class="alert alert-danger">
         {{ $errors->first('auth') }}
       </div>
     @endif
+
+    @if(session('user.register.success') === true)
+      <p>会員登録が完了しました!!</p>
+    @endif
+
     <div class="login-container">
       <form action="/login" method="post">
         @csrf

@@ -10,15 +10,24 @@
     @if ($errors->any())
       <div>
       @foreach ($errors->all() as $error)
-          {{ $error }}<br>
+        @if($error === 'The email field is required.')
+          <p>メールアドレスが入力されていません。</p>
+        @elseif($error === 'The password field is required.')
+          <p>パスワードが入力されていません。</p>
+        @endif
       @endforeach
+      </div>
+    @endif
+    @if($errors->has('auth'))
+      <div class="alert alert-danger">
+        {{ $errors->first('auth') }}
       </div>
     @endif
     <div class="login-container">
       <form action="/login" method="post">
         @csrf
         <p>email</p>
-        <input name="email" type="email"><br>
+        <input name="email" type="email" value="{{ old('email') }}"><br>
         <p>password</p>
         <input name="password" type="password"><br>
         <button class="btn login">ログインする</button>

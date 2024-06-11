@@ -26,4 +26,11 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/check/input');
     }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->regenerateToken();
+        $request->session()->regenerate();
+        return redirect('/');
+    }
 }

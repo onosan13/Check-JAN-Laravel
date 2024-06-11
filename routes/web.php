@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,12 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //会員登録
 Route::get('/register', [AuthController::class, 'register']);
+Route::post('/user/register', [UserController::class, 'user']);
 
 //認可処理
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/check')->group(function(){
       Route::get('/input', [CheckController::class, 'input']);
     });
+    Route::get('/logout', [AuthController::class, 'logout']);
 });

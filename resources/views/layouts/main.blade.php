@@ -42,7 +42,7 @@
                     <p>～麻雀点数計算サイト～</p>
                 </div>
                 <ul class="footer-nav">
-                    <li><a href="/check/input">トップ</a></li>
+                    <li><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
         </footer>

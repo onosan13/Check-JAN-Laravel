@@ -17,7 +17,7 @@
   </div>
 
   <main>
-    <form class="form-wrapper" action="main_contents/check.php" method="post">
+    <form class="form-wrapper" action="/check/confirm" method="post">
       @csrf
       <h1>条件を選択してください</h1>
       <div class="main-container">
@@ -139,7 +139,6 @@
           <div class="jan-pai">
 
             <div class="tehai-form">
-              <input type="hidden" name="jihai[]" value="0">
               <label>
                 <input class="tehai-che" name="jihai[]" type="checkbox" value="ton">
                 <img class="pai-img" src="/img/janpai/ton.png" alt="東">
@@ -254,7 +253,6 @@
           <div class="jan-pai">
 
             <div class="tehai-form">
-              <input type="hidden" name="manzu[]" value="0">
               <label>
                 <input class="tehai-che" name="manzu[]" type="checkbox" value="m-1">
                 <img class="pai-img" src="/img/janpai/man-1.png" alt="M1">
@@ -398,7 +396,6 @@
           <div class="jan-pai">
 
             <div class="tehai-form">
-              <input type="hidden" name="pinzu[]" value="0">
               <label>
                 <input class="tehai-che" name="pinzu[]" type="checkbox" value="p-1">
                 <img class="pai-img" src="/img/janpai/pin-1.png" alt="P1">
@@ -542,7 +539,6 @@
           <div class="jan-pai">
 
             <div class="tehai-form">
-              <input type="hidden" name="souzu[]" value="0">
               <label>
                 <input class="tehai-che" name="souzu[]" type="checkbox" value="s-1">
                 <img class="pai-img" src="/img/janpai/sou-1.png" alt="S1">

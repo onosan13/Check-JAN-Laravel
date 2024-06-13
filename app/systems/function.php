@@ -1,68 +1,56 @@
 <?php
 
-namespace System\function;
-
 /*選択された牌を種類ごとの配列に入れる関数
 ---------------------------------------------------------------*/
 
-function receive_manzu($hais) {
-  require_once("check.php");
+function receive_manzu($hais,$ms_1,$ms_2,$ms_3,$ms_4,$ms_5,$ms_6,$ms_7,$ms_8,$ms_9) {
 
   $manzu_tehai=[];
-  global $m_count_1;
-  global $m_count_2;
-  global $m_count_3;
-  global $m_count_4;
-  global $m_count_5;
-  global $m_count_6;
-  global $m_count_7;
-  global $m_count_8;
-  global $m_count_9;
 
   foreach ($hais as $hai) {
     switch ($hai) {
       case "m-1":
-        for ($i = 0; $i < $m_count_1; $i++) {
+        for ($i = 0; $i < $ms_1; $i++) {
           $manzu_tehai[] = "m-1";
         }
         break;
       case "m-2":
-        for ($i = 0; $i < $m_count_2; $i++) {
+        for ($i = 0; $i < $ms_2; $i++) {
           $manzu_tehai[] = "m-2";
         }
         break;
       case "m-3":
-        for ($i = 0; $i < $m_count_3; $i++) {
+        for ($i = 0; $i < $ms_3; $i++) {
           $manzu_tehai[] = "m-3";
         }
         break;
       case "m-4":
-        for ($i = 0; $i < $m_count_4; $i++) {
+        for ($i = 0; $i < $ms_4; $i++) {
           $manzu_tehai[] = "m-4";
         }
         break;
       case "m-5":
-        for ($i = 0; $i < $m_count_5; $i++) {
+        for ($i = 0; $i < $ms_5; $i++) {
           $manzu_tehai[] = "m-5";
         }
         break;
       case "m-6":
-        for ($i = 0; $i < $m_count_6; $i++) {
+        for ($i = 0; $i < $ms_6; $i++) {
           $manzu_tehai[] = "m-6";
         }
         break;
       case "m-7":
-        for ($i = 0; $i < $m_count_7; $i++) {
+        for ($i = 0; $i < $ms_7; $i++) {
           $manzu_tehai[] = "m-7";
         }
         break;
       case "m-8":
-        for ($i = 0; $i < $m_count_8; $i++) {
+        for ($i = 0; $i < $ms_8; $i++) {
           $manzu_tehai[] = "m-8";
         }
         break;
       case "m-9":
-        for ($i = 0; $i < $m_count_9; $i++) {
+        for ($i = 0; $i < $ms_9; $i++) {
           $manzu_tehai[] = "m-9";
         }
         break;
@@ -72,64 +60,54 @@ function receive_manzu($hais) {
   return $manzu_tehai;
 }
 
-function receive_pinzu($hais) {
-  require_once("check.php");
+function receive_pinzu($hais,$ps_1,$ps_2,$ps_3,$ps_4,$ps_5,$ps_6,$ps_7,$ps_8,$ps_9) {
 
   $pinzu_tehai=[];
-  global $p_count_1;
-  global $p_count_2;
-  global $p_count_3;
-  global $p_count_4;
-  global $p_count_5;
-  global $p_count_6;
-  global $p_count_7;
-  global $p_count_8;
-  global $p_count_9;
 
   foreach ($hais as $hai) {
     switch ($hai) {
       case "p-1":
-        for ($i = 0; $i < $p_count_1; $i++) {
+        for ($i = 0; $i < $ps_1; $i++) {
           $pinzu_tehai[] = "p-1";
         }
         break;
       case "p-2":
-        for ($i = 0; $i < $p_count_2; $i++) {
+        for ($i = 0; $i < $ps_2; $i++) {
           $pinzu_tehai[] = "p-2";
         }
         break;
       case "p-3":
-        for ($i = 0; $i < $p_count_3; $i++) {
+        for ($i = 0; $i < $ps_3; $i++) {
           $pinzu_tehai[] = "p-3";
         }
         break;
       case "p-4":
-        for ($i = 0; $i < $p_count_4; $i++) {
+        for ($i = 0; $i < $ps_4; $i++) {
           $pinzu_tehai[] = "p-4";
         }
         break;
       case "p-5":
-        for ($i = 0; $i < $p_count_5; $i++) {
+        for ($i = 0; $i < $ps_5; $i++) {
           $pinzu_tehai[] = "p-5";
         }
         break;
       case "p-6":
-        for ($i = 0; $i < $p_count_6; $i++) {
+        for ($i = 0; $i < $ps_6; $i++) {
           $pinzu_tehai[] = "p-6";
         }
         break;
       case "p-7":
-        for ($i = 0; $i < $p_count_7; $i++) {
+        for ($i = 0; $i < $ps_7; $i++) {
           $pinzu_tehai[] = "p-7";
         }
         break;
       case "p-8":
-        for ($i = 0; $i < $p_count_8; $i++) {
+        for ($i = 0; $i < $ps_8; $i++) {
           $pinzu_tehai[] = "p-8";
         }
         break;
       case "p-9":
-        for ($i = 0; $i < $p_count_9; $i++) {
+        for ($i = 0; $i < $ps_9; $i++) {
           $pinzu_tehai[] = "p-9";
         }
         break;
@@ -139,64 +117,54 @@ function receive_pinzu($hais) {
   return $pinzu_tehai;
 }
 
-function receive_souzu($hais) {
-  require_once("check.php");
+function receive_souzu($hais,$ss_1,$ss_2,$ss_3,$ss_4,$ss_5,$ss_6,$ss_7,$ss_8,$ss_9) {
 
   $souzu_tehai=[];
-  global $s_count_1;
-  global $s_count_2;
-  global $s_count_3;
-  global $s_count_4;
-  global $s_count_5;
-  global $s_count_6;
-  global $s_count_7;
-  global $s_count_8;
-  global $s_count_9;
 
   foreach ($hais as $hai) {
     switch ($hai) {
       case "s-1":
-        for ($i = 0; $i < $s_count_1; $i++) {
+        for ($i = 0; $i < $ss_1; $i++) {
           $souzu_tehai[] = "s-1";
         }
         break;
       case "s-2":
-        for ($i = 0; $i < $s_count_2; $i++) {
+        for ($i = 0; $i < $ss_2; $i++) {
           $souzu_tehai[] = "s-2";
         }
         break;
       case "s-3":
-        for ($i = 0; $i < $s_count_3; $i++) {
+        for ($i = 0; $i < $ss_3; $i++) {
           $souzu_tehai[] = "s-3";
         }
         break;
       case "s-4":
-        for ($i = 0; $i < $s_count_4; $i++) {
+        for ($i = 0; $i < $ss_4; $i++) {
           $souzu_tehai[] = "s-4";
         }
         break;
       case "s-5":
-        for ($i = 0; $i < $s_count_5; $i++) {
+        for ($i = 0; $i < $ss_5; $i++) {
           $souzu_tehai[] = "s-5";
         }
         break;
       case "s-6":
-        for ($i = 0; $i < $s_count_6; $i++) {
+        for ($i = 0; $i < $ss_6; $i++) {
           $souzu_tehai[] = "s-6";
         }
         break;
       case "s-7":
-        for ($i = 0; $i < $s_count_7; $i++) {
+        for ($i = 0; $i < $ss_7; $i++) {
           $souzu_tehai[] = "s-7";
         }
         break;
       case "s-8":
-        for ($i = 0; $i < $s_count_8; $i++) {
+        for ($i = 0; $i < $ss_8; $i++) {
           $souzu_tehai[] = "s-8";
         }
         break;
       case "s-9":
-        for ($i = 0; $i < $s_count_9; $i++) {
+        for ($i = 0; $i < $ss_9; $i++) {
           $souzu_tehai[] = "s-9";
         }
         break;
@@ -206,52 +174,44 @@ function receive_souzu($hais) {
   return $souzu_tehai;
 }
 
-function receive_jihai($hais) {
-  require_once("check.php");
+function receive_jihai($hais,$js_ton,$js_nan,$js_sha,$js_pei,$js_haku,$js_hatu,$js_chun) {
 
   $jihai_tehai=[];
-  global $j_count_ton;
-  global $j_count_nan;
-  global $j_count_sha;
-  global $j_count_pei;
-  global $j_count_haku;
-  global $j_count_hatu;
-  global $j_count_chun;
 
   foreach ($hais as $hai) {
     switch ($hai) {
       case "ton":
-        for ($i = 0; $i < $j_count_ton; $i++) {
+        for ($i = 0; $i < $js_ton; $i++) {
           $jihai_tehai[] = "ton";
         }
         break;
       case "nan":
-        for ($i = 0; $i < $j_count_nan; $i++) {
+        for ($i = 0; $i < $js_nan; $i++) {
           $jihai_tehai[] = "nan";
         }
         break;
       case "sha":
-        for ($i = 0; $i < $j_count_sha; $i++) {
+        for ($i = 0; $i < $js_sha; $i++) {
           $jihai_tehai[] = "sha";
         }
         break;
       case "pei":
-        for ($i = 0; $i < $j_count_pei; $i++) {
+        for ($i = 0; $i < $js_pei; $i++) {
           $jihai_tehai[] = "pei";
         }
         break;
       case "haku":
-        for ($i = 0; $i < $j_count_haku; $i++) {
+        for ($i = 0; $i < $js_haku; $i++) {
           $jihai_tehai[] = "haku";
         }
         break;
       case "hatu":
-        for ($i = 0; $i < $j_count_hatu; $i++) {
+        for ($i = 0; $i < $js_hatu; $i++) {
           $jihai_tehai[] = "hatu";
         }
         break;
       case "chun":
-        for ($i = 0; $i < $j_count_chun; $i++) {
+        for ($i = 0; $i < $js_chun; $i++) {
           $jihai_tehai[] = "chun";
         }
         break;

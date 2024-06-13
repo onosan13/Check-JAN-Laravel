@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/check')->group(function(){
       Route::get('/input', [CheckController::class, 'input']);
       Route::post('/confirm', [CheckController::class, 'confirm'])->name('cehck.list');
+      Route::post('/result', [CheckController::class, 'result']);
     });
     Route::get('/logout', [AuthController::class, 'logout']);
 });

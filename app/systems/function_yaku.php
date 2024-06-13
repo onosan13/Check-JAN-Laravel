@@ -2,31 +2,25 @@
 
 /*条件用*/
 
-function reach()
+function reach($joukens)
 {
-  global $joukens;
-
   if ($joukens[5] == "naki") {
     return;
-  } elseif ($joukens[4] == "reach") {
+  } elseif ($joukens[2] == "reach") {
     return 1;
   }
 }
 
-function renchan()
+function renchan($joukens)
 {
-  global $joukens;
-
-  if ($joukens[3] === 0) {
+  if ($joukens[4] === 0) {
     return;
   }
-  return $joukens[3] * 300;
+  return $joukens[4] * 300;
 }
 
-function tumo_ron()
+function tumo_ron($joukens)
 {
-  global $joukens;
-
   if ($joukens[5] == "naki") {
     return;
   } elseif ($joukens[6] == "tumo") {
@@ -34,14 +28,12 @@ function tumo_ron()
   }
 }
 
-function rinshan()
+function rinshan($joukens)
 {
-  global $joukens;
-
   if ($joukens[7] == 0) {
-    return;
+    return false;
   } elseif ($joukens[6] == "ron") {
-    return;
+    return false;
   }
 
   if ($joukens[8] == "rinshan") {
@@ -49,9 +41,8 @@ function rinshan()
   }
 }
 
-function pinhu($tehai)
+function pinhu($tehai,$joukens)
 {
-  global $joukens;
   $anko_count = array_count_values($tehai);
 
   $check=0;
@@ -75,11 +66,8 @@ function pinhu($tehai)
 
 /*七対子確認用*/
 
-function ti_toi($tehai)
+function ti_toi($tehai,$ryan_pe_kou,$joukens)
 {
-  global $ryan_pe_kou;
-  global $joukens;
-
   if ($ryan_pe_kou !== null) {
     return;
   }
@@ -128,10 +116,8 @@ function tanyao($tehai)
 
 /*役満確認用関数*/
 
-function kokusi($tehai)
+function kokusi($tehai,$joukens)
 {
-
-  global $joukens;
 
   $kokusi1 = ["m-1", "m-1", "m-9", "p-1", "p-9", "s-1", "s-9", "ton", "nan", "sha", "pei", "haku", "hatu", "chun"];
   $kokusi2 = ["m-1", "m-9", "m-9", "p-1", "p-9", "s-1", "s-9", "ton", "nan", "sha", "pei", "haku", "hatu", "chun"];
@@ -158,10 +144,9 @@ function kokusi($tehai)
   }
 }
 
-function su_anko($tehai)
+function su_anko($tehai,$joukens)
 {
 
-  global $joukens;
   $anko_count = array_count_values($tehai);
   $count_2 = 0;
 
@@ -287,10 +272,8 @@ function shousu_si($tehai)
   }
 }
 
-function chu_renpoutou($tehai)
+function chu_renpoutou($tehai,$joukens)
 {
-
-  global $joukens;
 
   $chu_ren_m1 = ["m-1", "m-1", "m-1", "m-1", "m-2", "m-3", "m-4", "m-5", "m-6", "m-7", "m-8", "m-9", "m-9", "m-9",];
   $chu_ren_m2 = ["m-1", "m-1", "m-1", "m-2", "m-2", "m-3", "m-4", "m-5", "m-6", "m-7", "m-8", "m-9", "m-9", "m-9",];
@@ -449,10 +432,8 @@ function tinrountou($tehai)
   return 13;
 }
 
-function su_kantu()
+function su_kantu($joukens)
 {
-  global $joukens;
-
   if ($joukens[7] == 4) {
     return 13;
   } else {
@@ -463,10 +444,9 @@ function su_kantu()
 
 /*通常役用*/
 
-function honroutou($tehai)
+function honroutou($tehai,$joukens)
 {
 
-  global $joukens;
   $anko_count = array_count_values($tehai);
   $count_2 = 0;
 
@@ -556,10 +536,8 @@ function shousangen($tehai)
   }
 }
 
-function sananko($tehai)
+function sananko($tehai,$joukens,$su_anko)
 {
-  global $joukens;
-  global $su_anko;
   $anko_count = array_count_values($tehai);
   $count = 0;
 
@@ -580,9 +558,8 @@ function sananko($tehai)
   }
 }
 
-function sanshoku_doujun($tehai)
+function sanshoku_doujun($tehai,$joukens)
 {
-  global $joukens;
   $anko_count = array_count_values($tehai);
   $anko_count_num = count($anko_count);
 
@@ -636,9 +613,8 @@ function sanshoku_doujun($tehai)
   }
 }
 
-function ikkitu_kan($tehai)
+function ikkitu_kan($tehai,$joukens)
 {
-  global $joukens;
   $anko_count = array_count_values($tehai);
   $anko_count_num = count($anko_count);
 
@@ -720,11 +696,8 @@ function ikkitu_kan($tehai)
   return;
 }
 
-function honitu($tehai)
+function honitu($tehai,$joukens,$tinitu)
 {
-  global $joukens;
-  global $tinitu;
-
   if ($tinitu == null) {
     foreach ($tehai as $hai) {
       if (preg_match("/m-/", $hai)) {
@@ -757,10 +730,8 @@ function honitu($tehai)
   }
 }
 
-function tinitu($tehai)
+function tinitu($tehai,$joukens)
 {
-  global $joukens;
-
   foreach ($tehai as $hai) {
     if (preg_match("/m-/", $hai)) {
       foreach ($tehai as $hai) {
@@ -833,9 +804,8 @@ function tinitu($tehai)
   }
 }
 
-function toitoi($tehai)
+function toitoi($tehai,$joukens)
 {
-  global $joukens;
   $anko_count = array_count_values($tehai);
   $count_2 = 0;
 
@@ -861,11 +831,8 @@ function toitoi($tehai)
   }
 }
 
-function chanta($tehai)
+function chanta($tehai,$joukens,$junchan)
 {
-  global $joukens;
-  global $junchan;
-
   if ($junchan !== null) {
     return;
   }
@@ -1006,10 +973,8 @@ function chanta($tehai)
   }
 }
 
-function junchan($tehai)
+function junchan($tehai,$joukens)
 {
-  global $joukens;
-
   foreach ($tehai as $hai) {
     for ($i = 4; $i <= 6; $i++) {
       if (preg_match("/-{$i}/", $hai)) {
@@ -1161,11 +1126,8 @@ function junchan($tehai)
   }
 }
 
-function i_pe_kou($tehai)
+function i_pe_kou($tehai,$joukens,$ryan_pe_kou)
 {
-  global $joukens;
-  global $ryan_pe_kou;
-
   $manzu_array = [];
   $pinzu_array = [];
   $souzu_array = [];
@@ -1247,9 +1209,8 @@ function i_pe_kou($tehai)
   return;
 }
 
-function ryan_pe_kou($tehai)
+function ryan_pe_kou($tehai,$joukens)
 {
-  global $joukens;
   $anko_count = array_count_values($tehai);
 
   if ($joukens[5] !== "naki") {
@@ -1344,10 +1305,8 @@ function ryan_pe_kou($tehai)
   return;
 }
 
-function sankantu()
+function sankantu($joukens)
 {
-  global $joukens;
-
   if ($joukens[7] == 3) {
     return 2;
   } else {
@@ -1358,10 +1317,8 @@ function sankantu()
 
 /*役牌チェック*/
 
-function ton($tehai)
+function ton($tehai,$joukens,$jikaze)
 {
-  global $joukens;
-  global $jikaze;
   $anko_count = array_count_values($tehai);
 
   $ton = 0;
@@ -1390,10 +1347,8 @@ function ton($tehai)
   return;
 }
 
-function nan($tehai)
+function nan($tehai,$joukens,$jikaze)
 {
-  global $joukens;
-  global $jikaze;
   $anko_count = array_count_values($tehai);
 
   $nan = 0;
@@ -1422,10 +1377,8 @@ function nan($tehai)
   return;
 }
 
-function sha($tehai)
+function sha($tehai,$joukens,$jikaze)
 {
-  global $joukens;
-  global $jikaze;
   $anko_count = array_count_values($tehai);
 
   $sha = 0;
@@ -1448,10 +1401,8 @@ function sha($tehai)
   return;
 }
 
-function pei($tehai)
+function pei($tehai,$joukens,$jikaze)
 {
-  global $joukens;
-  global $jikaze;
   $anko_count = array_count_values($tehai);
 
   $pei = 0;
@@ -1543,32 +1494,15 @@ function chun($tehai)
 
 /*役満計算用*/
 
-function yakuman_check()
+function yakuman_check(&$total_han,$yakuman_check)
 {
-
-  global $total_han;
-  global $yakuman_check;
-
   foreach ($yakuman_check as $yakuman) {
     $total_han += $yakuman;
   }
 }
 
-function yakuman_list()
+function yakuman_list($kokusi,$su_anko,$daisangen,$daisu_si,$shousu_si,$chu_renputou,$ryu_i_sou,$tu_i_sou,$tinrountou,$su_kantu,&$yakuman_list)
 {
-  global $kokusi;
-  global $su_anko;
-  global $daisangen;
-  global $daisu_si;
-  global $shousu_si;
-  global $chu_renputou;
-  global $ryu_i_sou;
-  global $tu_i_sou;
-  global $tinrountou;
-  global $su_kantu;
-
-  global $yakuman_list;
-
   if ($kokusi !== null) {
     $yakuman_list[] = "国士無双";
   }
@@ -1601,15 +1535,8 @@ function yakuman_list()
   }
 }
 
-function jouken_check()
+function jouken_check(&$total_han,$reach,$tumo_ron,$rinshan,$pinhu,$dora)
 {
-  global $total_han;
-  global $reach;
-  global $tumo_ron;
-  global $rinshan;
-  global $pinhu;
-  global $dora;
-
   if ($reach !== null) {
     $total_han += $reach;
   }
@@ -1627,22 +1554,15 @@ function jouken_check()
   }
 }
 
-function jouken_list()
+function jouken_list(&$jouken_list,$reach,$tumo_ron,$rinshan,$pinhu,$dora)
 {
-  global $jouken_list;
-  global $reach;
-  global $tumo_ron;
-  global $rinshan;
-  global $pinhu;
-  global $dora;
-
   if ($reach !== null) {
     $jouken_list[] = "リーチ";
   }
   if ($tumo_ron !== null) {
     $jouken_list[] = "自摸";
   }
-  if ($rinshan !== null) {
+  if ($rinshan) {
     $jouken_list[] = "嶺上開花";
   }
   if ($pinhu !== null) {
@@ -1653,21 +1573,15 @@ function jouken_list()
   }
 }
 
-function yaku_check()
+function yaku_check($yaku_check,&$total_han)
 {
-  global $yaku_check;
-  global $total_han;
-
   foreach ($yaku_check as $yaku) {
     $total_han += $yaku;
   }
 }
 
-function yaku_list()
+function yaku_list(&$yaku_list,$yaku_check)
 {
-  global $yaku_list;
-  global $yaku_check;
-
   if ($yaku_check[0] !== null) {
     $yaku_list[] = "東";
   }
@@ -1739,11 +1653,8 @@ function yaku_list()
   }
 }
 
-function result_score($score)
+function result_score($score,$joukens,$renchan)
 {
-  global $joukens;
-  global $renchan;
-
   if($score>=13){
     $score=13;
   }

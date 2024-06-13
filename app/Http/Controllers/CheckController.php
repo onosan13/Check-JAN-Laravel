@@ -85,7 +85,143 @@ class CheckController extends Controller
     }
 
     public function result(ResultPostRequest $request){
+        require_once(app_path('systems/function_yaku.php'));
         $data=$request->validated();
-        dd($data);
+
+        $joukens=$data['joukens'];//条件一覧
+        $tehais=$data['tehais'];//手牌一覧
+
+        //自風
+        $jikaze=$joukens[1];
+
+        //ドラの数
+        $dora=$joukens[3];
+
+        //条件
+        $reach=reach($joukens);
+        $renchan=renchan($joukens);
+        $tumo_ron=tumo_ron($joukens);
+        $rinshan=rinshan($joukens);
+        $pinhu=pinhu($tehais,$joukens);
+
+        //タンヤオチェック
+        $tanyao=tanyao($tehais);
+
+        /*役満チェック*/
+        $kokusi = kokusi($tehais,$joukens);
+        $su_anko = su_anko($tehais,$joukens);
+        $daisangen = daisangen($tehais);
+        $daisu_si = daisu_si($tehais);
+        $shousu_si = shousu_si($tehais);
+        $chu_renputou = chu_renpoutou($tehais,$joukens);
+        $ryu_i_sou = ryu_i_sou($tehais);
+        $tu_i_sou = tu_i_sou($tehais);
+        $tinrountou = tinrountou($tehais);
+        $su_kantu = su_kantu($joukens);
+
+        /*通常役チェック*/
+        $honroutou = honroutou($tehais,$joukens);
+        $sanshoku_doukou = sanshoku_doukou($tehais);
+        $shousangen = shousangen($tehais);
+        $sananko = sananko($tehais,$joukens,$su_anko);
+        $sanshoku_doujun = sanshoku_doujun($tehais,$joukens);
+        $ikkitu_kan = ikkitu_kan($tehais,$joukens);
+        $tinitu = tinitu($tehais,$joukens);
+        $honitu = honitu($tehais,$joukens,$tinitu);
+        $toitoi = toitoi($tehais,$joukens);
+        $junchan = junchan($tehais,$joukens);
+        $chanta = chanta($tehais,$joukens,$junchan);
+        $ryan_pe_kou = ryan_pe_kou($tehais,$joukens);
+        $i_pe_kou = i_pe_kou($tehais,$joukens,$ryan_pe_kou);
+        $sankantu = sankantu($joukens);
+
+        //七対子チェック
+        $ti_toitu = ti_toi($tehais,$ryan_pe_kou,$joukens);
+
+        /*役牌*/
+        $ton = ton($tehais,$joukens,$jikaze);
+        $nan = nan($tehais,$joukens,$jikaze);
+        $sha = sha($tehais,$joukens,$jikaze);
+        $pei = pei($tehais,$joukens,$jikaze);
+        $haku = haku($tehais);
+        $hatu = hatu($tehais);
+        $chun = chun($tehais);
+
+        $yaku_check = [
+            $ton,
+            $nan,
+            $sha,
+            $pei,
+            $haku,
+            $hatu,
+            $chun,
+            $tanyao,
+            $honroutou,
+            $sanshoku_doukou,
+            $shousangen,
+            $sananko,
+            $sanshoku_doujun,
+            $ikkitu_kan,
+            $toitoi,
+            $sankantu,
+            $tinitu,
+            $honitu,
+            $ryan_pe_kou,
+            $i_pe_kou,
+            $junchan,
+            $chanta,
+            $ti_toitu
+        ];
+
+        $total_han = 0;
+        $yakuman_list = [];
+        $jouken_list = [];
+        $yaku_list = [];
+
+        $yakuman_check = [
+            $kokusi,
+            $su_anko,
+            $daisangen,
+            $daisu_si,
+            $shousu_si,
+            $chu_renputou,
+            $ryu_i_sou,
+            $tu_i_sou,
+            $tinrountou,
+            $su_kantu
+        ];
+          
+        yakuman_check($total_han,$yakuman_check);
+        yakuman_list($kokusi,$su_anko,$daisangen,$daisu_si,$shousu_si,$chu_renputou,$ryu_i_sou,$tu_i_sou,$tinrountou,$su_kantu,$yakuman_list);
+        jouken_check($total_han,$reach,$tumo_ron,$rinshan,$pinhu,$dora);
+        jouken_list($jouken_list,$reach,$tumo_ron,$rinshan,$pinhu,$dora);
+        yaku_check($yaku_check,$total_han);
+        yaku_list($yaku_list,$yaku_check);
+
+        //計算結果
+        $result_score = result_score($total_han,$joukens,$renchan);
+        $result_list = array_merge($yakuman_list, $jouken_list, $yaku_list);
+        $yaku_message = 0;
+
+        if ($total_han >= 13) {
+            $yaku_message = "役満";
+        } elseif ($total_han >= 11) {
+            $yaku_message = "三倍満";
+        } elseif ($total_han >= 8) {
+            $yaku_message = "倍満";
+        } elseif ($total_han >= 6) {
+            $yaku_message = "跳満";
+        } elseif ($total_han >= 4) {
+            $yaku_message = "満貫";
+        } else {
+            $yaku_message = null;
+        }
+
+        return view('check.result',[
+            'yaku_message'=>$yaku_message,
+            'result_score'=>$result_score,
+            'result_list'=>$result_list,
+            'tehais'=>$tehais
+        ]);
     }
 }

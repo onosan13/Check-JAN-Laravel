@@ -5,7 +5,7 @@
 {{--メインコンテンツ--}}
 
 @section('contents')
-{{ require_once(app_path('systems/function_yaku.php')) }}
+{{ require_once(app_path('systems/function.php')) }}
   <div class="result-wrapper">
     <div class="result-container">
       <h1>点数はこちら</h1>

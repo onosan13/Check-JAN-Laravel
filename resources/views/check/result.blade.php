@@ -10,19 +10,19 @@
     <div class="result-container">
       <h1>点数はこちら</h1>
       <div class="point-container">
-        <h5><?php echo "{$yaku_message}  {$result_score}点"; ?></h5>
+        <h5>{{$yaku_message}}  {{$result_score}}点</h5>
       </div>
     </div>
 
     <div class="check-container point-tehai">
-      <?php displayTehai($tehais); ?>
+      {{displayTehai($tehais)}}
     </div>
 
     <h1>上がり役はこちら</h1>
     <div class="result-tehai-container">
-      <?php foreach ($result_list as $list) : ?>
-        <h5><?php echo $list; ?></h5>
-      <?php endforeach; ?>
+      @foreach ($result_list as $list)
+        <h5>{{$list}}</h5>
+      @endforeach
     </div>
   </div>
 @endsection

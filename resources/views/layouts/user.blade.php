@@ -25,7 +25,7 @@
                 <div class="header-right">
                     <ul class="header-nav">
                         <li><a href="/">トップへ</a></li>
-                        <li><a href="/login/index">ログイン</a></li>
+                        <li><a href="/user/mypage">マイページ</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,6 +42,9 @@
                     </div>
                     <p>～麻雀点数計算サイト～</p>
                 </div>
+                <ul class="footer-nav">
+                    <li><a href="/logout">ログアウト</a></li>
+                </ul>
             </div>
         </footer>
         

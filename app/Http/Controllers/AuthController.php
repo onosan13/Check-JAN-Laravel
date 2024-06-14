@@ -24,7 +24,7 @@ class AuthController extends Controller
                 ->withErrors(['auth'=>'メールアドレスかパスワードに誤りがあります。',]);
         }
         $request->session()->regenerate();
-        return redirect()->intended('/check/input');
+        return redirect()->intended('/user/input');
     }
 
     public function logout(Request $request){

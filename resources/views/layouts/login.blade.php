@@ -17,10 +17,15 @@
                     <div class="header-title">
                         <h2>Check JAN</h2>
                         <div class="header-logo">
-                            <img src="img/main-rogo.png" alt="ロゴ">
+                            <img src="/img/main-rogo.png" alt="ロゴ">
                         </div>
                         <p>～麻雀点数計算サイト～</p>
                     </div>
+                </div>
+                <div class="header-right">
+                    <ul class="header-nav">
+                        <li><a href="/">トップへ</a></li>
+                    </ul>
                 </div>
             </div>
         </header>
@@ -32,7 +37,7 @@
                 <div class="footer-title">
                     <h2>Check JAN</h2>
                     <div class="footer-logo">
-                        <img src="img/main-rogo.png" alt="ロゴ">
+                        <img src="/img/main-rogo.png" alt="ロゴ">
                     </div>
                     <p>～麻雀点数計算サイト～</p>
                 </div>

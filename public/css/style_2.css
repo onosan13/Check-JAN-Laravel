@@ -23,11 +23,17 @@
   margin-bottom: 40px;
 }
 
-.login:hover{
-  background-color: rgb(74, 145, 17,0.9);
+.login:hover {
+  background-color: rgb(74, 145, 17, 0.9);
 }
 
 .register {
   margin: 80px 0 100px;
   border: none;
+}
+
+/*結果画面ログイン*/
+
+.hozon {
+  margin-bottom: 100px
 }

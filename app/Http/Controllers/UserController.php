@@ -19,6 +19,6 @@ class UserController extends Controller
             exit;
         }
         $request->session()->flash('user.register.success', true);
-        return redirect('/');
+        return redirect('/login/index');
     }
 }

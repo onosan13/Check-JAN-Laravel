@@ -7,7 +7,7 @@
         <meta name="description" content="麻雀の点数計算を行うサイトです。">
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/style_2.css">
-        <link rel="icon" type="image/png" href="img/favicon.ico">
+        <link rel="icon" type="image/png" href="/img/favicon.ico">
     </head>
     <body>
 

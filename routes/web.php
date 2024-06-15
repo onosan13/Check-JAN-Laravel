@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/input', [CheckUserController::class, 'input']);
     Route::post('/confirm', [CheckUserController::class, 'confirm'])->name('cehck.list');
     Route::post('/result', [CheckUserController::class, 'result']);
-    Route::put('/register', [CheckUserController::class, 'register']);
+    Route::put('/save', [CheckUserController::class, 'save'])->name('score.save');
   });
   Route::get('/logout', [AuthController::class, 'logout']);
 });

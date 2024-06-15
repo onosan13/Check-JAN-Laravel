@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckPostRequest;
 use App\Http\Requests\ResultPostRequest;
+use App\Http\Requests\ResultPutRequest;
+use App\Models\Score as ScoreModel;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUserController extends Controller
 {
@@ -222,5 +225,145 @@ class CheckUserController extends Controller
             'result_list'=>$result_list,
             'tehais'=>$tehais
         ]);
+    }
+
+    public function save(ResultPutRequest $request){
+        $data=$request->validated();
+        $data['user_id']=Auth::id();
+        $user_id=$data['user_id'];
+        $result_list=$data['result_list'];
+        $result_score=$data['result_score'];
+        $count=ScoreModel::count();
+
+        $kokusi = false;
+        $su_anko = false;
+        $daisangen = false;
+        $daisu_si = false;
+        $shousu_si = false;
+        $chu_renputou = false;
+        $ryu_i_sou = false;
+        $tu_i_sou = false;
+        $tinrountou = false;
+        $su_kantu = false;
+
+        foreach($result_list as $list){
+            switch ($list) {
+                case '国士無双':
+                    $kokusi=true;
+                    break;
+                case '四暗刻':
+                    $su_anko=true;
+                    break;
+                case '大三元':
+                    $daisangen=true;
+                    break;
+                case '大四喜':
+                    $daisu_si=true;
+                    break;
+                case '小四喜':
+                    $shousu_si=true;
+                    break;
+                case '九蓮宝燈':
+                    $chu_renputou=true;
+                    break;
+                case '緑一色':
+                    $ryu_i_sou=true;
+                    break;
+                case '字一色':
+                    $tu_i_sou=true;
+                    break;
+                case '清老頭':
+                    $tinrountou=true;
+                    break;
+                case '四槓子':
+                    $su_kantu=true;
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+
+        // 変数を配列に格納
+        $yakumans = [
+            'kokusi' => $kokusi,
+            'su_anko' => $su_anko,
+            'daisangen' => $daisangen,
+            'daisu_si' => $daisu_si,
+            'shousu_si' => $shousu_si,
+            'chu_renputou' => $chu_renputou,
+            'ryu_i_sou' => $ryu_i_sou,
+            'tu_i_sou' => $tu_i_sou,
+            'tinrountou' => $tinrountou,
+            'su_kantu' => $su_kantu
+        ];
+
+        // $yakumans 配列から値が true の要素だけを取得
+        $selectedYakumans = array_filter($yakumans, function ($value) {
+            return $value === true;
+        });
+
+        $result_data=[
+            'user_id'=>$user_id,
+            'max_score'=>$result_score,
+        ];
+        // $selectedYakumans のキーと値を $result_data に結合
+        $result_data = array_merge($result_data, $selectedYakumans);
+
+        if($count === 0){
+            try{
+                $r=ScoreModel::create($result_data);
+            }catch(\Throwable $e){
+                echo $e->getMessage();
+                exit;
+            }
+        }
+        else{
+            $score=ScoreModel::find(1);
+            try{
+                if($score->user_id !== Auth::id()){
+                    return redirect('/user/input');
+                }
+                if($result_data['max_score'] > $score->max_score){
+                    $score->max_score=$result_data['max_score'];
+                }
+                if(!$score->kokusi && array_key_exists('kokusi', $result_data)){
+                    $score->kokusi = $result_data['kokusi'];
+                }
+                if(!$score->su_anko && array_key_exists('su_anko', $result_data)){
+                    $score->su_anko = $result_data['su_anko'];
+                }
+                if (!$score->daisangen && array_key_exists('daisangen', $result_data)) {
+                    $score->daisangen = $result_data['daisangen'];
+                }
+                if (!$score->daisu_si && array_key_exists('daisu_si', $result_data)) {
+                    $score->daisu_si = $result_data['daisu_si'];
+                }
+                if (!$score->shousu_si && array_key_exists('shousu_si', $result_data)) {
+                    $score->shousu_si = $result_data['shousu_si'];
+                }
+                if (!$score->chu_renputou && array_key_exists('chu_renputou', $result_data)) {
+                    $score->chu_renputou = $result_data['chu_renputou'];
+                }
+                if (!$score->ryu_i_sou && array_key_exists('ryu_i_sou', $result_data)) {
+                    $score->ryu_i_sou = $result_data['ryu_i_sou'];
+                }
+                if (!$score->tu_i_sou && array_key_exists('tu_i_sou', $result_data)) {
+                    $score->tu_i_sou = $result_data['tu_i_sou'];
+                }
+                if (!$score->tinrountou && array_key_exists('tinrountou', $result_data)) {
+                    $score->tinrountou = $result_data['tinrountou'];
+                }
+                if (!$score->su_kantu && array_key_exists('su_kantu', $result_data)) {
+                    $score->su_kantu = $result_data['su_kantu'];
+                }
+                $score_array->save();
+            }catch(\Throwable $e){
+                echo $e->getMessage();
+                exit;
+            }
+        }
+        $request->session()->flash('user.input_success', true);
+        return redirect('/user/input');
     }
 }

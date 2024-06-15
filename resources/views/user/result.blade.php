@@ -26,11 +26,11 @@
     </div>
     <h1>上がりをマイデータに登録する</h1>
     <div>
-      <form method="post" action="/user/register">
+      <form method="post" action="{{ route('score.save') }}">
         @csrf
         @method('PUT')
         @foreach($result_list as $list)
-          <input type="hidden" name="result_list" value="{{ $list }}">
+          <input type="hidden" name="result_list[]" value="{{ $list }}">
         @endforeach
         <input type="hidden" name="result_score" value="{{ $result_score }}">
         <button class="btn hozon">保存する</button>

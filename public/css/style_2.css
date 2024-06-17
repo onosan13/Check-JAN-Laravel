@@ -37,3 +37,30 @@
 .hozon {
   margin-bottom: 100px
 }
+
+
+/*マイページ*/
+
+.mypage-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.mypage-title {
+  padding-top: 150px;
+}
+
+.mypage-container {
+  background-color: rgb(5, 5, 32);
+  width: 80%;
+  margin: 0 auto 50px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.yakumans-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}

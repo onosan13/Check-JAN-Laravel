@@ -233,7 +233,7 @@ class CheckUserController extends Controller
         $user_id=$data['user_id'];
         $result_list=$data['result_list'];
         $result_score=$data['result_score'];
-        $count=ScoreModel::count();
+        $count=ScoreModel::where('user_id', $user_id)->count();
 
         $kokusi = false;
         $su_anko = false;
@@ -319,7 +319,7 @@ class CheckUserController extends Controller
             }
         }
         else{
-            $score=ScoreModel::find(1);
+            $score=ScoreModel::where('user_id', $user_id)->first();
             try{
                 if($score->user_id !== Auth::id()){
                     return redirect('/user/input');
@@ -357,13 +357,13 @@ class CheckUserController extends Controller
                 if (!$score->su_kantu && array_key_exists('su_kantu', $result_data)) {
                     $score->su_kantu = $result_data['su_kantu'];
                 }
-                $score_array->save();
+                $score->save();
             }catch(\Throwable $e){
                 echo $e->getMessage();
                 exit;
             }
         }
         $request->session()->flash('user.input_success', true);
-        return redirect('/user/input');
+        return redirect(route('mypage'));
     }
 }

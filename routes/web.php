@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CheckUserController;
+use App\Http\Controllers\UserMypageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/confirm', [CheckUserController::class, 'confirm'])->name('cehck.list');
     Route::post('/result', [CheckUserController::class, 'result']);
     Route::put('/save', [CheckUserController::class, 'save'])->name('score.save');
+    Route::get('/mypage', [UserMypageController::class, 'mypage'])->name('mypage');
   });
   Route::get('/logout', [AuthController::class, 'logout']);
 });

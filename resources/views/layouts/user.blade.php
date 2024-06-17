@@ -24,7 +24,7 @@
                 </div>
                 <div class="header-right">
                     <ul class="header-nav">
-                        <li><a href="/">トップへ</a></li>
+                        <li><a href="/user/input">トップへ</a></li>
                         <li><a href="/user/mypage">マイページ</a></li>
                     </ul>
                 </div>
